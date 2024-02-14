@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Verifica se os dados de login correspondem aos dados armazenados no localStorage
         if ((cpf === adminData.cpf || email === adminData.email) && senha === adminData.senha) {
             // Redireciona para a página admHome.html
-            window.location.href = '../../../view/adm/admHome.html';
+            window.location.href = '../../adm/admHome.html';
         } else {
             alert('CPF, Email ou Senha incorretos.');
         }
