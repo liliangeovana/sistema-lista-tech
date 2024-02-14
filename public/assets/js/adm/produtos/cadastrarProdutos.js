@@ -8,6 +8,11 @@ document.getElementById('produtoForm').addEventListener('submit', function(e) {
     const unidadeProduto = document.getElementById('opcoesUnidade').value;
     const validadeProduto = document.getElementById('cadastroValidade').value;
 
+    if (!generoProduto || !validadeProduto) {
+        alert('Por favor, preencha o campo de gênero e data.');
+        return; // Retorna para evitar o cadastro
+    }
+
     // Estruturando os dados em um objeto
     const produto = {
         tipo: tipoProduto,
