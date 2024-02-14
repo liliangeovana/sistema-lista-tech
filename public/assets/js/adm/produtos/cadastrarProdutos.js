@@ -1,5 +1,5 @@
 // Array para armazenar todos os produtos
-let produtosData = [];
+let produtosData = {};
 
 document.getElementById('produtoForm').addEventListener('submit', function(e) {
     e.preventDefault(); // Evita que o formulário seja enviado
@@ -18,15 +18,19 @@ document.getElementById('produtoForm').addEventListener('submit', function(e) {
 
     // Estruturando os dados em um objeto
     const produto = {
-        tipo: tipoProduto,
         genero: generoProduto,
         marca: marcaProduto,
         unidade: unidadeProduto,
         validade: validadeProduto
     };
 
-    // Adicionando o novo produto ao array de produtos
-    produtosData.push(produto);
+    // Verifica se já existe um array para o tipo de produto, se não existir, cria um novo array
+    if (!produtosData[tipoProduto]) {
+        produtosData[tipoProduto] = [];
+    }
+
+    // Adicionando o novo produto ao array de produtos do tipo correspondente
+    produtosData[tipoProduto].push(produto);
 
     // Salvando os produtos atualizados no localStorage
     localStorage.setItem('produtosData', JSON.stringify(produtosData));

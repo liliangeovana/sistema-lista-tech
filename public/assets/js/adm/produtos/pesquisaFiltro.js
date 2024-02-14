@@ -33,22 +33,6 @@ function filtrarPorGenero() {
 
 
 
-
-// Função para filtrar e exibir os produtos com base na classificação selecionada no menu suspenso
-function filtrarPorClassificacao() {
-    const selectedOption = document.getElementById('selectFiltroClassificao').value;
-    const rows = document.querySelectorAll('#listaProdutos tbody tr');
-
-    rows.forEach(row => {
-        const tipoProduto = row.closest('tbody').previousElementSibling.textContent.trim();
-        if (selectedOption === 'Lista Geral' || tipoProduto === selectedOption) {
-            row.style.display = '';
-        } else {
-            row.style.display = 'none';
-        }
-    });
-}
-
 // Adiciona eventos de digitação e mudança para a barra de pesquisa e o menu suspenso
 document.getElementById('searchInput').addEventListener('input', filtrarPorGenero);
-document.getElementById('selectFiltroClassificao').addEventListener('change', filtrarPorClassificacao);
+
