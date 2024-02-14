@@ -7,14 +7,20 @@
     <link rel="stylesheet" href="../../../style.css">
 </head>
 <body class="font-serif">
+
+    <!--HEAD-->
     <div class="bg-blue-900 flex justify-between items-center w-full p-2">
         <p class="ml-4 text-white uppercase font-semibold"><a href="../admHome.html">Cantina Tech</a></p>
         <button class="mr-4 bg-green-700 hover:bg-green-600 p-2 w-20 rounded-lg text-white font-semibold" id="logoutButton">Sair</button>
     </div>
 
     <section class="sm:pb-10 sm:px-24 md:px-44">
+
+        <!--FORMULÁRIO-->
         <form class="border border-gray-400 bg-gray-100 w-80 m-auto mt-10 p-4 flex flex-col gap-y-4 sm:w-full" id="produtoForm" autocomplete="off">
+
             <div class="flex flex-col gap-y-2">
+
                 <label for="cadastroTipoProduto">Classificação</label>
                 <select name="cadastroTipoProduto" id="cadastroTipoProduto" class="border border-gray-500 rounded p-1">
                     <option value="estivas">Estivas</option>
@@ -47,5 +53,7 @@
             <button class="bg-green-800 w-fit m-auto p-3 rounded-md text-white font-medium hover:bg-green-700" type="submit" id="botaoCadastrarProduto">Cadastrar Produto</button>
         </form>
     </section>
+
+<script src="../../../assets/js/adm/produtos/cadastrarProdutos.js"></script>
 </body>
 </html>
