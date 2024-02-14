@@ -2,13 +2,11 @@
 function exibirProdutos() {
     const tbody = document.querySelector('#listaProdutos tbody');
     const selectFiltroClassificao = document.getElementById('selectFiltroClassificao');
+    const tipoSelecionado = selectFiltroClassificao.value;
     const tipoProdutoHeader = document.getElementById('tipoProduto');
 
     // Limpa a tabela antes de adicionar os produtos novamente
     tbody.innerHTML = '';
-
-    // Obtém o valor selecionado no filtro
-    const tipoSelecionado = selectFiltroClassificao.value;
 
     // Define o cabeçalho de acordo com o tipo selecionado
     tipoProdutoHeader.textContent = tipoSelecionado === 'geral' ? 'Lista Geral' : tipoSelecionado.charAt(0).toUpperCase() + tipoSelecionado.slice(1);
@@ -29,14 +27,12 @@ function exibirProdutos() {
                 }
             }
         } else {
-            // Se o tipo selecionado não for "geral", verifica se a chave do tipo existe no localStorage
-            if (produtosData[tipoSelecionado]) {
-                const produtosDoTipo = produtosData[tipoSelecionado];
-                if (produtosDoTipo.length > 0) {
-                    produtosDoTipo.forEach((produto, index) => {
-                        adicionarLinhaProduto(produto, index);
-                    });
-                }
+            // Se houver produtos para o tipo selecionado
+            const produtosDoTipo = produtosData[tipoSelecionado];
+            if (produtosDoTipo && produtosDoTipo.length > 0) {
+                produtosDoTipo.forEach((produto, index) => {
+                    adicionarLinhaProduto(produto, index);
+                });
             }
         }
     }
