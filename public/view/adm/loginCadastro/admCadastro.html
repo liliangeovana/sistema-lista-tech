@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar | Administrador </title>
+    <link rel="stylesheet" href="../../../style.css">
+</head>
+<body class="h-svh w-svw flex flex-col  p-2 font-serif bg-gray-200 md:px-20">
+
+    <div class="bg-blue-800 flex flex-col m-auto md:rounded-2xl md:w-full">
+        <p class="text-center text-white p-6 font-semibold">Cadastrar Administrador</p>
+    
+    
+    <form id="admRegisterForm" class="flex flex-col bg-white p-4 gap-y-5 md:rounded-b-2xl md:gap-y-2" autocomplete="off">
+
+        <!--Nome-->
+        <div id="admRegisterNomeBlock" class="flex flex-col gap-y-2">
+            <label for="admRegisterNome">Nome Completo</label>
+            <input class="border border-gray-300 p-1 focus:outline-none focus:border-blue-900" type="text" name="admRegisterNome" id="admRegisterNome">
+        </div>
+
+        <!--CPF-->
+        <div id="admRegisterCpfBlock" class="flex flex-col gap-y-2">
+            <label for="admRegisterCpf">CPF</label>
+            <input class="border border-gray-300 p-1 focus:outline-none focus:border-blue-900" type="text" name="admRegisterCpf" id="admRegisterCpf">
+        </div>
+
+        <!--EMAIL-->
+        <div id="admRegisterEmailBlock" class="flex flex-col gap-y-2">
+            <label for="admRegisterEmail">Email</label>
+            <input class="border border-gray-300 p-1 focus:outline-none focus:border-blue-900" type="email" name="admRegisterEmail" id="admRegisterEmail">
+        </div>
+
+        <!--SENHA-->
+        <div id="admRegisterSenhaBlock" class="flex flex-col gap-y-2">
+            <label for="admRegisterSenha">Senha</label>
+            <input class="border border-gray-300 p-1 focus:outline-none focus:border-blue-900" type="password" name="admRegisterSenha" id="admRegisterSenha">
+        </div>
+
+        <!--CONFIRMAR SENHA-->
+        <div id="admRegisterConfirmarSenhaBlock" class="flex flex-col gap-y-2">
+            <label for="admRegisterConfirmarSenha">Confirmar senha</label>
+            <input class="border border-gray-300 p-1 focus:outline-none focus:border-blue-900" type="password" name="admRegisterConfirmarSenha" id="admRegisterConfirmarSenha">
+        </div>
+
+        <button class="bg-blue-800 hover:bg-blue-700 mx-10 text-white p-2 rounded-md md:w-fit md:m-auto" type="submit">Cadastrar</button>
+    </form>
+</div>
+
+<script src="../../../assets/js/adm/loginCadastro/admCadastro.js"></script>
+</body>
+</html>

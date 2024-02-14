@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Administrador</title>
+    <link rel="stylesheet" href="../../../style.css">
+</head>
+<body class="adm-login h-svh w-svw flex flex-col font-serif md:flex-row">
+    
+    <!--IMG-->
+    <div class="bg-blue-900 h-full flex flex-col justify-center items-center md:h-full md:w-full 2xl:w-1/2">
+        <img class="w-52 h-auto m-10 rounded-lg shadow-2xl lg:w-80 lg:h-auto 2xl:w-96 2xl:h-96" src="../../../assets/img/logo.jpeg" alt="">
+    </div>
+
+    <!--CORPO-->
+    <div class="p-2 w-full md:h-fit md:m-auto 2xl:mx-44">
+
+        <!--MESSAGE-->
+    <div class="text-center mx-4">
+        <p class="uppercase text-blue-900 font-semibold">Administrador</p>
+        <div class="bg-blue-400 bg-opacity-35 hidden mt-4 rounded-md p-1" id="loginOptionMessage">Deseja voltar e logar com <span id="option" class="underline text-green-700 cursor-pointer"></span>?</div>
+    </div>
+
+        <!--FORMULÁRIO-->
+        <div class="m-auto mx-4 md:h-full">
+            <form id="admLoginForm" action="" class="p-2 flex flex-col gap-y-5" autocomplete="off">
+                
+                <!--CPF-->
+                <div id="CpfBlock" class="flex flex-col">
+                    <label for="admLoginCpf">CPF</label>
+                    <input 
+                        class="focus:outline-none p-1 rounded-md border border-gray-400 focus:border-blue-800"
+                    type="text" name="admLoginCpf" id="admLoginCpf">
+                </div>
+
+                <!--EMAIL-->
+                <div id="EmailBlock" class="flex flex-col">
+                    <label for="admLoginEmail">Email</label>
+                    <input 
+                        class="focus:outline-none p-1 rounded-md border border-gray-400 focus:border-blue-800"
+                    type="email" name="admLoginEmail" id="admLoginEmail">
+                </div>
+
+                <!--SENHA-->
+                <div id="senhaBlock" class="flex flex-col">
+                    <label for="admLoginSenha">Senha</label>
+                    <input 
+                        class="focus:outline-none p-1 rounded-md border border-gray-400 focus:border-blue-800"
+                    type="password" name="admLoginSenha" id="admLoginSenha">
+                </div>
+
+                <button class="bg-blue-800 p-2 mx-2 rounded-md text-white hover:bg-blue-700 sm:mx-20 md:mx-44">Login</button>
+
+            </form>
+
+            <a id="admSolicitarCadastro" class="text-center underline text-sm cursor-pointer mt-4" href="../loginCadastro/admCadastro.html">
+                <p>Cadastrar administrador</p>
+            </a>
+        </div>
+
+    </div>
+<script src="../../../assets/js/both/interacaoCampos.js"></script>
+
+</body>
+</html>
