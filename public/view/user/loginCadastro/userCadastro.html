@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar | Usuário </title>
+    <link rel="stylesheet" href="../../../style.css">
+</head>
+<body class="h-svh w-svw flex flex-col  p-2 font-serif bg-gray-200 md:px-20">
+    <div class="bg-green-800 flex flex-col m-auto md:rounded-2xl md:w-full">
+        <p class="text-center text-white p-6 font-semibold">Solicitar Cadastro</p>
+    
+    
+    <form id="userRegisterForm" class="flex flex-col bg-white p-4 gap-y-5 md:rounded-b-2xl md:gap-y-2" action="" autocomplete="off">
+
+        <!--Nome-->
+        <div id="userRegisterNomeBlock" class="flex flex-col gap-y-2">
+            <label for="userRegisterNome">Nome Completo</label>
+            <input class="border border-gray-300 p-1 focus:outline-none focus:border-blue-900" type="text" name="userRegisterNome" id="userRegisterNome">
+        </div>
+
+        <!--CPF-->
+        <div id="userRegisterCpfBlock" class="flex flex-col gap-y-2">
+            <label for="userRegisterCpf">CPF</label>
+            <input class="border border-gray-300 p-1 focus:outline-none focus:border-blue-900" type="text" name="userRegisterCpf" id="userRegisterCpf">
+        </div>
+
+        <!--EMAIL-->
+        <div id="userRegisterEmailBlock" class="flex flex-col gap-y-2">
+            <label for="userRegisterEmail">Email</label>
+            <input class="border border-gray-300 p-1 focus:outline-none focus:border-blue-900" type="email" name="userRegisterEmail" id="userRegisterEmail">
+        </div>
+
+        <!--SENHA-->
+        <div id="userRegisterSenhaBlock" class="flex flex-col gap-y-2">
+            <label for="userRegisterSenha">Senha</label>
+            <input class="border border-gray-300 p-1 focus:outline-none focus:border-blue-900" type="password" name="userRegisterSenha" id="userRegisterSenha">
+        </div>
+
+        <!--CONFIRMAR SENHA-->
+        <div id="userRegisterConfirmarSenhaBlock" class="flex flex-col gap-y-2">
+            <label for="userRegisterConfirmarSenha">Confirmar senha</label>
+            <input class="border border-gray-300 p-1 focus:outline-none focus:border-blue-900" type="password" name="userRegisterConfirmarSenha" id="userRegisterConfirmarSenha">
+        </div>
+
+        <button class="bg-green-800 hover:bg-green-700 mx-10 text-white p-2 rounded-md md:w-fit md:m-auto" type="submit">Solicitar</button>
+    </form>
+</div>
+
+<script src="../../../assets/js/user/loginCadastro/solicitacao.js"></script>
+</body>
+</html>
