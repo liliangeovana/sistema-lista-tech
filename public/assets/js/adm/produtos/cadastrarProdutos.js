@@ -1,6 +1,14 @@
 // Array para armazenar todos os produtos
 let produtosData = {};
 
+// Verifica se há dados salvos no localStorage
+const produtosDataFromStorage = localStorage.getItem('produtosData');
+if (produtosDataFromStorage) {
+    // Se houver dados salvos, carrega-os para o objeto produtosData
+    produtosData = JSON.parse(produtosDataFromStorage);
+}
+
+
 document.getElementById('produtoForm').addEventListener('submit', function(e) {
     e.preventDefault(); // Evita que o formulário seja enviado
 
@@ -18,10 +26,12 @@ document.getElementById('produtoForm').addEventListener('submit', function(e) {
 
     // Estruturando os dados em um objeto
     const produto = {
+        tipo:tipoProduto,
         genero: generoProduto,
         marca: marcaProduto,
         unidade: unidadeProduto,
-        validade: validadeProduto
+        validade: validadeProduto,
+        status: 'visivel'
     };
 
     // Verifica se já existe um array para o tipo de produto, se não existir, cria um novo array
