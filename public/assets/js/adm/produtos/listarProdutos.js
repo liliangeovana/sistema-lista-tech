@@ -54,16 +54,42 @@ function adicionarLinhaProduto(produto, index) {
         <td class="px-6 border border-gray-400">${produto.marca || '-'}</td>
         <td class="px-6 border border-gray-400">${produto.unidade}</td>
         <td class="px-6 border border-gray-400">${dataFormatada}</td>
-        <td class="px-6  border border-gray-400 w-12">
-            <button id="buttonDetails" class="bg-green-700 text-gray-300 font-extrabold m-auto p-1 w-8 rounded-lg hover:bg-green-600">&darr;</button>
+        <td class="px-6 border border-gray-400 w-12 action-cell">
+            <button class="bg-green-700 text-gray-300 font-extrabold m-auto p-1 w-8 rounded-lg hover:bg-green-600">&darr;</button>
         </td>
     `;
+
+    // Incluir botões de ação
+    const actionButtons = document.createElement('div');
+    actionButtons.classList.add('flex', 'flex-row', 'gap-x-4', 'justify-center', 'p-2');
+    actionButtons.innerHTML = `
+        <button class="bg-green-700 p-1 rounded-md text-gray-200 hover:bg-green-600 hover:shadow-lg">Editar</button>
+        <button class="bg-green-700 p-1 rounded-md text-gray-200 hover:bg-green-600 hover:shadow-lg">Ocultar</button>
+        <button class="delete-button bg-red-800 p-1 rounded-md text-gray-200 hover:bg-red-700 hover:shadow-lg">Deletar</button>
+    `;
+
+    const actionCell = document.createElement('td');
+    actionCell.setAttribute('colspan', '6');
+    actionCell.classList.add('hidden', 'action-buttons'); // Inicialmente oculto
+    actionCell.appendChild(actionButtons);
+
+    // Adicionando a linha de dados e os botões de ação à tabela
     tbody.appendChild(dataRow);
+    tbody.appendChild(actionCell);
+
+    // Adicionando evento de clique na célula da última coluna
+    const lastCell = dataRow.querySelector('.action-cell button');
+    lastCell.addEventListener('click', function() {
+        const buttonsRow = dataRow.nextElementSibling;
+        buttonsRow.classList.toggle('hidden'); // Alternando visibilidade
+    }); 
+    
 }
+
+
 
 // Chama a função para exibir os produtos quando a página carrega e quando o filtro é alterado
 window.addEventListener('load', exibirProdutos);
 document.getElementById('selectFiltroClassificao').addEventListener('change', exibirProdutos);
-
 
 
