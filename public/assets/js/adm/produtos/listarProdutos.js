@@ -11,31 +11,27 @@ function exibirProdutos() {
     // Define o cabeçalho de acordo com o tipo selecionado
     tipoProdutoHeader.textContent = tipoSelecionado === 'geral' ? 'Lista Geral' : tipoSelecionado.charAt(0).toUpperCase() + tipoSelecionado.slice(1);
 
-    // Obtém os produtos do localStorage
-    const produtosData = JSON.parse(localStorage.getItem('produtosData'));
-
-    // Se houver produtos
-    if (produtosData) {
-        // Se o tipo selecionado for "geral" ou se não houver um tipo selecionado específico
-        if (tipoSelecionado === 'geral') {
-            for (let tipo in produtosData) {
-                const produtosDoTipo = produtosData[tipo];
-                if (produtosDoTipo && produtosDoTipo.length > 0) {
-                    produtosDoTipo.forEach((produto, index) => {
-                        adicionarLinhaProduto(produto, index);
-                    });
+    // Obtém os produtos dos tipos selecionados
+    let produtosDoTipo = [];
+    if (tipoSelecionado === 'geral') {
+        // Obtém todos os produtos de todos os tipos
+        for (let tipo in localStorage) {
+            if (localStorage.hasOwnProperty(tipo) && tipo !== 'produtosPorTipo') {
+                const produtosDoTipoAtual = JSON.parse(localStorage.getItem(tipo));
+                if (produtosDoTipoAtual && produtosDoTipoAtual.length > 0) {
+                    produtosDoTipo = produtosDoTipo.concat(produtosDoTipoAtual);
                 }
             }
-        } else {
-            // Se houver produtos para o tipo selecionado
-            const produtosDoTipo = produtosData[tipoSelecionado];
-            if (produtosDoTipo && produtosDoTipo.length > 0) {
-                produtosDoTipo.forEach((produto, index) => {
-                    adicionarLinhaProduto(produto, index);
-                });
-            }
         }
+    } else {
+        // Obtém os produtos do tipo selecionado
+        produtosDoTipo = JSON.parse(localStorage.getItem(tipoSelecionado)) || [];
     }
+
+    // Exibe os produtos na tabela
+    produtosDoTipo.forEach((produto, index) => {
+        adicionarLinhaProduto(produto, index);
+    });
 }
 
 // Função para adicionar uma linha na tabela para um produto
@@ -85,8 +81,6 @@ function adicionarLinhaProduto(produto, index) {
     }); 
     
 }
-
-
 
 // Chama a função para exibir os produtos quando a página carrega e quando o filtro é alterado
 window.addEventListener('load', exibirProdutos);
