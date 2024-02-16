@@ -3,24 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listas Cadastradas</title>
+    <title>Lista Cadastrada</title>
     <link rel="stylesheet" href="../../../style.css">
 </head>
-<body class="font-serif bg-gray-100">
+<body class="lista-adm font-serif bg-gray-100">
 
-    <div class="bg-green-800 flex justify-between items-center w-full p-2">
-        <p class="ml-4 text-white uppercase font-semibold"><a href="../userHome.html">Cantina Tech</a></p>
+    <div class="bg-blue-900 flex justify-between items-center w-full p-2">
+        <p class="ml-4 text-white uppercase font-semibold"><a href="../admHome.html">Cantina Tech</a></p>
         <button class="mr-4 bg-green-700 hover:bg-green-600 p-2 w-20 rounded-lg text-white font-semibold" id="logoutButton">Sair</button>
     </div>
 
     <div class="mt-2 w-96 m-auto">
 
-            <h1 class="text-center text-xl font-bold uppercase mb-2">Listas Cadastradas</h1>
+        <h1 class="text-center text-xl font-bold uppercase mb-8" id="tituloLista">Listas Cadastradas - <span></span></h1>
             
-            <div class="mb-10 text-center">
-                <a class="underline" href="./criarLista.html">Nova lista</a>
-            </div>
-        
         <!-- Listas serão inseridas aqui -->
         <div id="listasContainer">
             <!-- Listas cadastradas serão inseridas aqui dinamicamente -->
@@ -30,4 +26,3 @@
 <script src="../../../assets/js/user/produtos/exibirLista.js"></script>
 </body>
 </html>
-

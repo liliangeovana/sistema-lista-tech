@@ -3,6 +3,11 @@ function getStoredSolicitations() {
     return JSON.parse(localStorage.getItem('solicitacoes')) || [];
 }
 
+// Função para redirecionar para a página de listas do usuário com base no CPF
+function redirectToUserListPage(cpf) {
+    window.location.href = `./listasUsuarios.html?cpf=${cpf}`;
+}
+
 // Função para renderizar as solicitações na página em uma tabela Tailwind CSS
 function renderSolicitations() {
     var arrayDeSolicitacoes = getStoredSolicitations();
@@ -32,7 +37,7 @@ function renderSolicitations() {
                 <button class="px-2 py-1 bg-gray-800 text-white rounded hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500" onclick="deletarSolicitacao(${index})">Deletar</button>
             </td>
             <td class="px-6 border border-gray-400 w-fit action-cell">
-                <button class="bg-green-700 text-gray-300 font-extrabold m-auto p-1 w-8 rounded-lg hover:bg-green-600">...</button>
+                <button class="button-details bg-green-700 text-gray-300 font-extrabold m-auto p-1 w-8 rounded-lg hover:bg-green-600" onclick="redirectToUserListPage('${solicitacao.cpf}')">...</button>
             </td>
         `;
         tbody.appendChild(row);

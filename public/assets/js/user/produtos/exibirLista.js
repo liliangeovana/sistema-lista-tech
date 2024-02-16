@@ -1,14 +1,30 @@
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.body.classList.contains('lista-adm')) {
+        // Se o body tiver a classe lista-adm, execute carregarListasUsuarioLogado
+        carregarListasUsuarioLogado();
+    } else {
+        // Se o body não tiver a classe lista-adm, execute outraFuncao
+        outraFuncao();
+    }
+});
+
 // Função para carregar e exibir as listas do usuário logado
 function carregarListasUsuarioLogado() {
     // Recupera o usuário logado do localStorage
-    const usuarioLogado = localStorage.getItem('cpfUsuarioLogado');
+    const usuarioLogadoCPF = localStorage.getItem('cpfUsuarioLogado');
+    const usuarios = JSON.parse(localStorage.getItem('solicitacoes'));
 
     // Verifica se o usuário está logado
-    if (usuarioLogado) {
+    if (usuarioLogadoCPF) {
+        // Atualiza o título com o nome do usuário
+        const usuario = usuarios.find(u => u.cpf === usuarioLogadoCPF);
+        const nomeUsuario = usuario ? usuario.nome : '';
+        document.getElementById('tituloLista').querySelector('span').textContent = nomeUsuario;
+
         // Itera sobre as chaves do localStorage
         for (let chave in localStorage) {
             // Verifica se a chave corresponde às listas do usuário logado
-            if (chave.startsWith(`${usuarioLogado}_lista`)) {
+            if (chave.startsWith(`${usuarioLogadoCPF}_lista`)) {
                 // Recupera o ID da lista da chave
                 const listaId = chave.split('_')[2];
                 // Recupera a lista do localStorage
@@ -47,31 +63,56 @@ function exibirLista(lista, listaId) {
     detalhesListaDiv.appendChild(tituloLista);
     detalhesListaDiv.appendChild(itensListaUl);
 
-    //botão de deletar lista
-    const botaoDeletar = document.createElement('button');
-    botaoDeletar.textContent = 'X';
-    botaoDeletar.classList.add('my-4', 'h-8', 'w-8', 'flex', 'justify-center', 'items-center', 'bg-red-800', 'hover:bg-red-700', 'text-white', 'p-2', 'rounded-full');
-    botaoDeletar.onclick = function() {
-        // Remove a lista do localStorage
-        const usuarioLogado = localStorage.getItem('cpfUsuarioLogado');
-        if (usuarioLogado) {
-            localStorage.removeItem(`${usuarioLogado}_lista${listaId}`);
-            console.log('Lista removida do localStorage:', `${usuarioLogado}_lista${listaId}`);
-            // Remove a lista do DOM
-            listaDiv.remove();
-        } else {
-            console.log('Nenhum usuário logado encontrado no localStorage.');
-        }
-    };
+    // Verifica se a página não possui a classe lista-adm antes de adicionar o botão "X"
+    if (!document.body.classList.contains('lista-adm')) {
+        //botão de deletar lista
+        const botaoDeletar = document.createElement('button');
+        botaoDeletar.textContent = 'X';
+        botaoDeletar.classList.add('my-4', 'h-8', 'w-8', 'flex', 'justify-center', 'items-center', 'bg-red-800', 'hover:bg-red-700', 'text-white', 'p-2', 'rounded-full');
+        botaoDeletar.onclick = function() {
+            // Remove a lista do localStorage
+            const usuarioLogado = localStorage.getItem('cpfUsuarioLogado');
+            if (usuarioLogado) {
+                localStorage.removeItem(`${usuarioLogado}_lista${listaId}`);
+                console.log('Lista removida do localStorage:', `${usuarioLogado}_lista${listaId}`);
+                // Remove a lista do DOM
+                listaDiv.remove();
+            } else {
+                console.log('Nenhum usuário logado encontrado no localStorage.');
+            }
+        };
 
-    // detalhes da lista e o botão de deletar à lista
+        // Adiciona o botão de deletar à listaDiv
+        listaDiv.appendChild(botaoDeletar);
+    }
+
+    // Adiciona os detalhes da lista à listaDiv
     listaDiv.appendChild(detalhesListaDiv);
-    listaDiv.appendChild(botaoDeletar);
 
     // Adiciona a lista ao contêiner de listas
     document.getElementById('listasContainer').appendChild(listaDiv);
 }
 
-// Verifica se o usuário está logado e carrega suas listas
-carregarListasUsuarioLogado();
+// Função a ser executada em páginas sem a classe lista-adm
+function outraFuncao() {
+    // Recupera o usuário logado do localStorage
+    const usuarioLogadoCPF = localStorage.getItem('cpfUsuarioLogado');
 
+    // Verifica se o usuário está logado
+    if (usuarioLogadoCPF) {
+        // Itera sobre as chaves do localStorage
+        for (let chave in localStorage) {
+            // Verifica se a chave corresponde às listas do usuário logado
+            if (chave.startsWith(`${usuarioLogadoCPF}_lista`)) {
+                // Recupera o ID da lista da chave
+                const listaId = chave.split('_')[2];
+                // Recupera a lista do localStorage
+                const lista = JSON.parse(localStorage.getItem(chave));
+                // Exibe a lista na página
+                exibirLista(lista, listaId);
+            }
+        }
+    } else {
+        console.log('Nenhum usuário logado encontrado no localStorage.');
+    }
+}
