@@ -1,7 +1,6 @@
 // Função para criar a lista do usuário com os produtos e suas quantidades
 function criarListaUsuario(event) {
     event.preventDefault(); // Evita o comportamento padrão de envio do formulário
-    window.alert('Nova lista cadastrada com sucesso.')
 
     // Recupera o usuário logado do localStorage
     const usuarioLogado = localStorage.getItem('cpfUsuarioLogado');
@@ -18,6 +17,9 @@ function criarListaUsuario(event) {
 
         const listaUsuario = []; // Lista do usuário
         const listaId = contadorListas; // Identificador único para a lista
+
+        // Construir uma string com os produtos cadastrados
+        let produtosCadastrados = 'Produtos Cadastrados:\n';
 
         // Itera sobre cada linha da tabela
         linhas.forEach((linha, index) => {
@@ -36,8 +38,14 @@ function criarListaUsuario(event) {
                     validade: dataValidade,
                     quantidade: quantidade
                 });
+
+                // Adiciona o produto à string de produtos cadastrados
+                produtosCadastrados += `- ${quantidade} ${unidade} de ${marca} (${genero}), com validade em ${dataValidade}\n`;
             }
         });
+
+        // Exibe a mensagem de sucesso com os produtos cadastrados
+        window.alert(`Nova lista cadastrada com sucesso.\n\n${produtosCadastrados}`);
 
         // Salva a lista do usuário no localStorage com um identificador único
         localStorage.setItem(`${usuarioLogado}_lista${listaId}`, JSON.stringify(listaUsuario));
