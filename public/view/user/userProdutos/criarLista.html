@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Lista</title>
+    <link rel="stylesheet" href="../../../style.css">
+</head>
+<body class="font-serif bg-gray-100">
+
+    <div class="bg-green-800 flex justify-between items-center w-full p-2">
+        <p class="ml-4 text-white uppercase font-semibold"><a href="../admHome.html">Cantina Tech</a></p>
+        <button class="mr-4 bg-green-700 hover:bg-green-600 p-2 w-20 rounded-lg text-white font-semibold" id="logoutButton">Sair</button>
+    </div>
+
+    <section class="m-4 md:px-14">
+        <!--Pesquisa-->
+        <div class="md:w-fit md:m-auto">
+            <input class="w-full p-1 border border-gray-700 md:w-80" type="text" id="searchInput" placeholder="Pesquisar">
+        </div>
+
+        <!-- Seleção de classificação de produto -->
+        <div class="md:flex md:flex-col md:justify-center md:gap-x-4">
+            <div class="flex flex-row gap-x-4 mt-4 md:flex md:justify-center md:items-center">
+                <p>Filtrar:</p>
+                <select class="border p-1 border-gray-700" id="selectFiltroClassificao">
+                    <option value="geral">Lista Geral</option>
+                    <option value="estivas">Estivas</option>
+                    <option value="proteina">Proteína</option>
+                    <option value="hortifruti">Hortifruti</option>
+                </select>
+            </div>
+        </div>
+
+    </section>
+
+    <form id="formCadastroLista" class="text-center" action="">
+        <section class=" mx-4 mt-8 sm:pb-10">
+            <div class="relative overflow-x-auto shadow-md  sm:mx-14 ">
+                <table id="listaProdutos" class="bg-gray-50 w-full text-sm text-left border border-gray-400 rtl:text-right">
+                    <thead class="text-xs uppercase text-center bg-gray-300 sticky">
+                        <tr>
+                            <th id="tipoProduto" scope="colgroup" colspan="6" class="py-3 border-b border-gray-400"></th>
+                        </tr>
+                        <tr>
+                            <th scope="col" class="py-2 px-3 border border-gray-400">Nº</th>
+                            <th scope="col" class="px-3 border border-gray-400">Gênero</th>
+                            <th scope="col" class="px-3 border border-gray-400">Marca</th>
+                            <th scope="col" class="px-3 border border-gray-400">Unidade</th>
+                            <th scope="col" class="px-3 border border-gray-400">Validade</th>
+                            <th scope="col" class=" border-gray-400">Quantidade</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center text-base"></tbody>
+                </table>
+            </div>
+        </section>
+        <button id="botaoFinalizar" type="submit" class="bg-green-800 mt-2 text-white p-2 rounded-lg hover:bg-green-700">Cadastrar lista</button>
+    </form>
+<script src="../../../assets/js/user/produtos/criarLista.js"></script>
+<script src="../../../assets/js/user/produtos/cadastrarLista.js"></script>
+<script src="../../../assets/js/both/pesquisa.js"></script>
+</body>
+</html>

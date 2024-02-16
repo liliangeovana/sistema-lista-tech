@@ -18,6 +18,8 @@ function loginUser(email, senha) {
     // Verifica se o login é permitido
     if (isLoginAllowed(user)) {
         console.log('logado!');
+
+        localStorage.setItem('cpfUsuarioLogado', user.cpf);
         // Login permitido, redireciona o usuário para a página principal, por exemplo
         window.location.href = '../../user/userHome.html';
     } else {
