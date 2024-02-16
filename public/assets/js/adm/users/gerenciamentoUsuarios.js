@@ -13,7 +13,7 @@ function renderSolicitations() {
 
     // Verifica se há solicitações para exibir
     if (arrayDeSolicitacoes.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="6">Não há solicitações registradas.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="7">Não há solicitações registradas.</td></tr>';
         return;
     }
 
