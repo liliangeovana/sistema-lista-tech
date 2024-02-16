@@ -40,7 +40,7 @@ function criarListaUsuario(event) {
                 });
 
                 // Adiciona o produto à string de produtos cadastrados
-                produtosCadastrados += `- ${quantidade} ${unidade} de ${marca} (${genero}), com validade em ${dataValidade}\n`;
+                produtosCadastrados += `- ${quantidade} ${unidade} de ${genero} (${marca} ), com validade em ${dataValidade}\n`;
             }
         });
 
