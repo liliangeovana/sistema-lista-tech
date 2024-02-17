@@ -1,37 +1,50 @@
 document.addEventListener('DOMContentLoaded', function() {
     if (document.body.classList.contains('lista-adm')) {
         // Se o body tiver a classe lista-adm, execute carregarListasUsuarioLogado
-        carregarListasUsuarioLogado();
+        carregarListasUsuario();
     } else {
         // Se o body não tiver a classe lista-adm, execute outraFuncao
         outraFuncao();
     }
 });
 
-// Função para carregar e exibir as listas do usuário logado
-function carregarListasUsuarioLogado() {
-    // Recupera o usuário logado do localStorage
-    const usuarioLogadoCPF = localStorage.getItem('cpfUsuarioLogado');
-    const usuarios = JSON.parse(localStorage.getItem('solicitacoes'));
+function carregarListasUsuario() {
+    // Verifica se a página possui a classe lista-adm
+    if (document.body.classList.contains('lista-adm')) {
+        // Recupera o CPF do usuário da query string
+        const urlParams = new URLSearchParams(window.location.search);
+        const cpfUsuario = urlParams.get('cpf');
 
-    // Verifica se o usuário está logado
-    if (usuarioLogadoCPF) {
-        // Atualiza o título com o nome do usuário
-        const usuario = usuarios.find(u => u.cpf === usuarioLogadoCPF);
-        const nomeUsuario = usuario ? usuario.nome : '';
-        document.getElementById('tituloLista').querySelector('span').textContent = nomeUsuario;
+        // Recupera as solicitações do localStorage
+        const solicitacoes = JSON.parse(localStorage.getItem('solicitacoes'));
 
-        // Itera sobre as chaves do localStorage
-        for (let chave in localStorage) {
-            // Verifica se a chave corresponde às listas do usuário logado
-            if (chave.startsWith(`${usuarioLogadoCPF}_lista`)) {
-                // Recupera o ID da lista da chave
-                const listaId = chave.split('_')[2];
-                // Recupera a lista do localStorage
-                const lista = JSON.parse(localStorage.getItem(chave));
-                // Exibe a lista na página
-                exibirLista(lista, listaId);
+        // Verifica se o CPF do usuário foi fornecido na URL
+        if (cpfUsuario) {
+            // Encontra o usuário com base no CPF
+            const usuario = solicitacoes.find(u => u.cpf === cpfUsuario);
+
+            // Verifica se o usuário foi encontrado
+            if (usuario) {
+                // Atualiza o título com o nome do usuário
+                document.getElementById('tituloLista').querySelector('span').textContent = usuario.nome;
+
+                // Itera sobre as chaves do localStorage
+                for (let chave in localStorage) {
+                    // Verifica se a chave corresponde às listas do usuário logado
+                    if (chave.startsWith(`${cpfUsuario}_lista`)) {
+                        // Recupera o ID da lista da chave
+                        const listaId = chave.split('_')[2]; // Alterado para [2]
+                        // Recupera a lista do localStorage
+                        const lista = JSON.parse(localStorage.getItem(chave));
+                        // Exibe a lista na página
+                        exibirLista(lista, listaId);
+                    }
+                }
+            } else {
+                console.log('Usuário não encontrado com o CPF fornecido.');
             }
+        } else {
+            console.log('CPF do usuário não fornecido na URL.');
         }
     } else {
         console.log('Nenhum usuário logado encontrado no localStorage.');
@@ -48,14 +61,14 @@ function exibirLista(lista, listaId) {
     const detalhesListaDiv = document.createElement('div');
 
     const tituloLista = document.createElement('h2');
-    tituloLista.textContent = `Lista de Compras`; 
+    tituloLista.textContent = 'Lista de Compras';
     tituloLista.classList.add('font-bold', 'mb-2');
 
     //elemento ul para os itens da lista
     const itensListaUl = document.createElement('ul');
     lista.forEach(item => {
         const itemLi = document.createElement('li');
-        itemLi.textContent = `${item.quantidade}${item.unidade} de ${item.genero} (${item.marca}) validade ${item.validade}`;
+        itemLi.textContent = `${item.quantidade} ${item.unidade} de ${item.genero} (${item.marca}) validade ${item.validade}`;
         itensListaUl.appendChild(itemLi);
     });
 
@@ -73,8 +86,8 @@ function exibirLista(lista, listaId) {
             // Remove a lista do localStorage
             const usuarioLogado = localStorage.getItem('cpfUsuarioLogado');
             if (usuarioLogado) {
-                localStorage.removeItem(`${usuarioLogado}_lista${listaId}`);
-                console.log('Lista removida do localStorage:', `${usuarioLogado}_lista${listaId}`);
+                localStorage.removeItem(`${usuarioLogado}_lista_${listaId}`);
+                console.log('Lista removida do localStorage:', `${usuarioLogado}_lista_${listaId}`);
                 // Remove a lista do DOM
                 listaDiv.remove();
             } else {
@@ -105,7 +118,7 @@ function outraFuncao() {
             // Verifica se a chave corresponde às listas do usuário logado
             if (chave.startsWith(`${usuarioLogadoCPF}_lista`)) {
                 // Recupera o ID da lista da chave
-                const listaId = chave.split('_')[2];
+                const listaId = chave.split('_')[1];
                 // Recupera a lista do localStorage
                 const lista = JSON.parse(localStorage.getItem(chave));
                 // Exibe a lista na página
@@ -116,3 +129,4 @@ function outraFuncao() {
         console.log('Nenhum usuário logado encontrado no localStorage.');
     }
 }
+
