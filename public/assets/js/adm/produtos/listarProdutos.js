@@ -1,4 +1,3 @@
-// Função para exibir os produtos na tabela HTML
 function exibirProdutos() {
     const tbody = document.querySelector('#listaProdutos tbody');
     const selectFiltroClassificao = document.getElementById('selectFiltroClassificao');
@@ -13,19 +12,21 @@ function exibirProdutos() {
 
     // Obtém os produtos dos tipos selecionados
     let produtosDoTipo = [];
-    if (tipoSelecionado === 'geral') {
-        // Obtém todos os produtos de todos os tipos
+
+    // Verifica se o tipo selecionado está entre os tipos desejados
+    if (tipoSelecionado === 'estivas' || tipoSelecionado === 'proteina' || tipoSelecionado === 'hortifruti') {
+        // Obtém os produtos do tipo selecionado
+        produtosDoTipo = JSON.parse(localStorage.getItem(tipoSelecionado)) || [];
+    } else if (tipoSelecionado === 'geral') {
+        // Obtém todos os produtos de todos os tipos, exceto os cadastrados através da função criarListaUsuario
         for (let tipo in localStorage) {
-            if (localStorage.hasOwnProperty(tipo) && tipo !== 'produtosPorTipo') {
+            if (localStorage.hasOwnProperty(tipo) && tipo !== 'produtosPorTipo' && (tipo === 'estivas' || tipo === 'proteina' || tipo === 'hortifruti') && !tipo.startsWith('_lista')) {
                 const produtosDoTipoAtual = JSON.parse(localStorage.getItem(tipo));
                 if (produtosDoTipoAtual && produtosDoTipoAtual.length > 0) {
                     produtosDoTipo = produtosDoTipo.concat(produtosDoTipoAtual);
                 }
             }
         }
-    } else {
-        // Obtém os produtos do tipo selecionado
-        produtosDoTipo = JSON.parse(localStorage.getItem(tipoSelecionado)) || [];
     }
 
     // Exibe os produtos na tabela
